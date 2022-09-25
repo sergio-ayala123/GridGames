@@ -1,0 +1,11 @@
+.cell.wall{
+    background-color: #e44c55;
+}
+
+.cell.visited{
+    background-color: #44d9e8;
+}
+
+.cell.path{
+    background-color: #ffc107;
+}
