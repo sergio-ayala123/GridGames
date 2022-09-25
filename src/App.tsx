@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
 import './App.css';
 import { useQuery } from 'react-query'
 import axios from 'axios';
 import NavBar from './components/NavBar';
-import GolBoard from './components/GolBoard';
 
 
 function App() {

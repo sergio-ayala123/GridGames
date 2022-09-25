@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { useState, useRef, FormEvent, useEffect } from "react";
+import { useState, useRef, FormEvent } from "react";
 import Cell, { CellBox } from "./Cell"
 import NavBar from "./NavBar";
 
@@ -81,7 +81,7 @@ const Board = () => {
                 myLoop()
 
             }
-            if (testQ.items.length == 0) {
+            if (testQ.items.length === 0) {
                 console.log('Out of items')
                 findPath(shortestPath, End)
             }
