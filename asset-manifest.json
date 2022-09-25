@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/GridGames/static/css/main.47edaa56.css",
+    "main.js": "/GridGames/static/js/main.79758536.js",
+    "static/js/787.2036a371.chunk.js": "/GridGames/static/js/787.2036a371.chunk.js",
+    "index.html": "/GridGames/index.html",
+    "main.47edaa56.css.map": "/GridGames/static/css/main.47edaa56.css.map",
+    "main.79758536.js.map": "/GridGames/static/js/main.79758536.js.map",
+    "787.2036a371.chunk.js.map": "/GridGames/static/js/787.2036a371.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47edaa56.css",
+    "static/js/main.79758536.js"
+  ]
+}
