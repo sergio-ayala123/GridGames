@@ -42,7 +42,6 @@ const Board = () => {
     const endRow = useRef<HTMLInputElement>(null)
     const endCol = useRef<HTMLInputElement>(null)
 
-    let i = 0
 
 
     testQ.enqueue(Start)
@@ -59,8 +58,8 @@ const Board = () => {
 
                 if (neighborX < 0 || neighborY < 0) continue;
                 else if (neighborX >= 30 || neighborY >= 30) continue;
-                else if (newarr[neighborX][neighborY].visited == true) continue;
-                else if (newarr[neighborX][neighborY].isWall == true) continue;
+                else if (newarr[neighborX][neighborY].visited === true) continue;
+                else if (newarr[neighborX][neighborY].isWall === true) continue;
                 else {
                     shortestPath.set(newarr[neighborX][neighborY], current)
                     testQ.enqueue(newarr[neighborX][neighborY])
@@ -69,16 +68,16 @@ const Board = () => {
                 }
             }
 
-            i++;
+           
             console.log('this is current: ', current)
             console.log('this is end: ', newarr[End.xValue][End.yValue])
             console.log('this is start: ', Start)
 
-            if (current == newarr[End.xValue][End.yValue]) {
+            if (current === newarr[End.xValue][End.yValue]) {
 
                 findPath(shortestPath, newarr[End.xValue][End.yValue])
             }
-            if (current != newarr[End.xValue][End.yValue]) {
+            if (current !== newarr[End.xValue][End.yValue]) {
                 myLoop()
 
             }
@@ -104,7 +103,7 @@ const Board = () => {
 
             setMatrix(newArr)
 
-            if (current != Start) {
+            if (current !== Start) {
                 findPath(path, current)
             }
         }, 50)
@@ -141,12 +140,7 @@ const Board = () => {
 
 
     }
-    useEffect(() => {
-        
-        console.log('IN USE EFFECT')
-        console.log('in useEffect Start:', Start)
-        console.log('in useEffect Start:', End)
-    }, []);
+    
 
 
     return (

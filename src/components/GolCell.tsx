@@ -16,14 +16,13 @@ class GolCellBox {
 const GolCell: React.FC<{ row: number, col: number, status: boolean; makeAlive: (x: number, y: number) => void }> = (props) => {
 
 
-    const [clicked, setClicked] = useState(false);
 
     const cellClicked = () => {
         localStorage.setItem('clicked', 'true')
     }
 
     const mouseEnter = () => {
-        if (localStorage.getItem('clicked') == 'true') {
+        if (localStorage.getItem('clicked') === 'true') {
 
             props.makeAlive(props.row, props.col)
         }

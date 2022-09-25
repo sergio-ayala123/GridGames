@@ -23,7 +23,7 @@ const Cell: React.FC<{ row: number, col: number, isWall: boolean, isPath: boolea
     }
 
     const mouseEnter = () => {
-        if (localStorage.getItem('clicked') == 'true') {
+        if (localStorage.getItem('clicked') === 'true') {
 
             props.makeWall(props.row, props.col)
         }

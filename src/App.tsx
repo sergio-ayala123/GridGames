@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
-import Board from './components/Board';
 import { useQuery } from 'react-query'
-import { Button } from '@mui/material';
 import axios from 'axios';
 import NavBar from './components/NavBar';
 import GolBoard from './components/GolBoard';
-import { Route } from 'react-router-dom';
-import ReactDom from 'react-dom'
+
 
 function App() {
 
-const [value, setValue] = useState<string>('');
 
 const { data } = useQuery(["fact"], () => {
     console.log('query')
