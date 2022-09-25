@@ -22,7 +22,7 @@ root.render(
       <BrowserRouter>
 
       <Routes>
-        <Route path = '/' element = {<App/>}></Route>
+        <Route path = '/GridGames' element = {<App/>}></Route>
         <Route path = '/GameOfLife' element = {<GolBoard/>}/>
         <Route path = '/pathFinder' element = {<Board/>}/>
 
