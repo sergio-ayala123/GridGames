@@ -39,5 +39,5 @@ const GolCell: React.FC<{ row: number, col: number, status: boolean; makeAlive: 
 }
 
 export { GolCellBox }
-export default GolCell
+export default React.memo(GolCell)
 

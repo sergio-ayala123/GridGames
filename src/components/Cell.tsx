@@ -1,3 +1,4 @@
+import React from 'react';
 import './Cell.css'
 
 
@@ -51,4 +52,4 @@ const Cell: React.FC<{ row: number, col: number, isWall: boolean, isPath: boolea
 }
 
 export { CellBox }
-export default Cell;
+export default React.memo(Cell)
