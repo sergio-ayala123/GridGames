@@ -35,7 +35,7 @@ const AStarBoard = () => {
     const [startAndEnd, setStartAndEnd] = useState<number>(0)
     const [obstaclePercentage, setObstaclePercentage] = useState<number>(50)
     const [diagonalNeighbors, setDiagonalNeighbors] = useState<boolean>(false)
-
+    const [reset, setReset] = useState<boolean>(false);
     const findPathAStar = async () => {
 
         current = start
@@ -142,12 +142,12 @@ const AStarBoard = () => {
         return minFCost
     }
 
-    const checkNeighbors = async (current: AStarCellClass, executionSpeed:number) => {
+    const checkNeighbors = async (current: AStarCellClass, executionSpeed: number) => {
 
         var neighbors: AStarCellClass[] = []
 
 
-        for (var i = 0; i < (diagonalNeighbors ? 8 : 4) ; i++) {
+        for (var i = 0; i < (diagonalNeighbors ? 8 : 4); i++) {
 
             var currentRow;
             var currentCol;
@@ -219,24 +219,34 @@ const AStarBoard = () => {
 
     }
     useEffect(() => {
-        matrix = []
-        for (let i = 0; i < rows; i++) {
-
-            matrix[i] = []
-            for (let j = 0; j < columns; j++) {
-                let randomNum = Math.floor(Math.random() * 100) + 1;
-                if (100 - randomNum < obstaclePercentage) {
-                    matrix[i][j] = new AStarCellClass(i, j, false, false, true, false, 0, 0)
-                }
-                else {
-
-                    matrix[i][j] = new AStarCellClass(i, j, false, false, false, false, 0, 0)
-                }
-            }
-        }
-        setMatrix(matrix)
+        setBoard()
     }, [rows, columns, obstaclePercentage])
 
+    const setBoard = () => {
+        console.log("startandEnd is: ", startAndEnd)
+
+        if (reset == true) {
+            setReset(false)
+        }
+
+            matrix = []
+            for (let i = 0; i < rows; i++) {
+
+                matrix[i] = []
+                for (let j = 0; j < columns; j++) {
+                    let randomNum = Math.floor(Math.random() * 100) + 1;
+                    if (100 - randomNum < obstaclePercentage) {
+                        matrix[i][j] = new AStarCellClass(i, j, false, false, true, false, 0, 0)
+                    }
+                    else {
+
+                        matrix[i][j] = new AStarCellClass(i, j, false, false, false, false, 0, 0)
+                    }
+                }
+            }
+            setMatrix(matrix)
+        
+    }
     const setExplored = (row: number, col: number) => {
         let newArr = [...matrix]
         if (startAndEnd === 0) {
@@ -260,17 +270,27 @@ const AStarBoard = () => {
 
     useEffect(() => {
         if (startAndEnd === 2) {
+            setReset(true)
             findPathAStar()
+            setStartAndEnd(0)
+            setOpenList([])
+            setClosedList([])
+            setDiagonalNeighbors(false)
+
         }
     }, [startAndEnd])
 
 
-    const getValuesFromOptions = (rows: number, columns: number, speed: number, obstacles: number,diagonalNeighbors:boolean) => {
+    const getValuesFromOptions = (rows: number, columns: number, speed: number, obstacles: number, diagonalNeighbors: boolean) => {
         setRows(rows)
         setColumns(columns)
         setExecutionSpeed(speed)
         setObstaclePercentage(obstacles)
         setDiagonalNeighbors(diagonalNeighbors)
+
+
+
+
     }
 
 
@@ -278,7 +298,8 @@ const AStarBoard = () => {
         <div style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>
             <NavBar />
 
-            <DraggableContainer sendValues={getValuesFromOptions}/>
+            <DraggableContainer sendValues={getValuesFromOptions} showResetButton={reset} resetBoard={setBoard} />
+
 
             <div style={{ display: 'grid', gridTemplateColumns: `repeat(` + columns + `, 40px)`, gridTemplateRows: `repeat(` + rows + `, 40px)`, justifyContent: 'center' }} onMouseLeave={() => localStorage.setItem('clicked', 'false')}>
                 {

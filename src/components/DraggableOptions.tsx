@@ -6,7 +6,7 @@ interface Position {
   y: number;
 }
 
-const DraggableContainer: React.FC<{sendValues: (rows:number, columns:number, speed:number, obstacles:number,diagonalNeighbors:boolean)=>void}> = (props) => {
+const DraggableContainer: React.FC<{sendValues: (rows:number, columns:number, speed:number, obstacles:number,diagonalNeighbors:boolean)=>void, showResetButton:boolean, resetBoard:() => void}> = (props) => {
   const [isDragging, setIsDragging] = useState(false);
   const [initialMousePosition, setInitialMousePosition] = useState<Position>({ x: 0, y: 0 });
   const [initialContainerPosition, setInitialContainerPosition] = useState<Position>({ x: 100, y: 100 });
@@ -53,10 +53,13 @@ const DraggableContainer: React.FC<{sendValues: (rows:number, columns:number, sp
     props.sendValues(rows, columns, speed, obstacles,diagonalNeighbors)
   }
 
+  const resetBoard = () => {
+    props.resetBoard()
+  }
 
   return (
     <div style={{position:'absolute', top:'100px', left:'100px'}} onMouseDown={handleMouseDown} ref={containerRef}>
-      <Options sendValues={handleValues}/>
+      <Options sendValues={handleValues} showResetButton= {props.showResetButton} resetBoard = {resetBoard}/>
     </div>
   );
 };
