@@ -15,8 +15,6 @@ class GolCellBox {
 
 const GolCell: React.FC<{ row: number, col: number, status: boolean; makeAlive: (x: number, y: number) => void }> = (props) => {
 
-
-
     const cellClicked = () => {
         localStorage.setItem('clicked', 'true')
     }
@@ -33,11 +31,10 @@ const GolCell: React.FC<{ row: number, col: number, status: boolean; makeAlive: 
 
     return (
         <>
-            <button className={`cell ${props.status ? 'alive' : 'btn btn-outline-light'}`} onMouseDown={cellClicked} onMouseOver={mouseEnter} onMouseUp = {mouseUp}></button>
+            <button className={`cell ${props.status ? 'alive' : ''}`} onMouseDown={cellClicked} onMouseOver={mouseEnter} onMouseUp = {mouseUp}></button>
         </>
     )
 }
 
 export { GolCellBox }
 export default React.memo(GolCell)
-

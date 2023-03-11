@@ -9,6 +9,8 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GolBoard from "./components/GolBoard";
 import Board from "./components/Board";
+import Form from "./components/Form";
+import AStarBoard from "./components/AStarBoard";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -24,9 +26,9 @@ root.render(
       <Routes>
         <Route path = '/GridGames' element = {<App/>}></Route>
         <Route path = '/GameOfLife' element = {<GolBoard/>}/>
-        <Route path = '/pathFinder' element = {<Board/>}/>
-
-
+        <Route path = '/BFS' element = {<Board/>}/>
+        <Route path = '/Form' element = {<Form/>}/>
+        <Route path = '/AStar' element = {<AStarBoard/>}/>
       </Routes>
       </BrowserRouter>
     </QueryClientProvider>

@@ -45,47 +45,43 @@ const Board = () => {
 
 
     testQ.enqueue(Start)
-    function myLoop() {
+    const  myLoop  =  ()  =>{
 
+        let newarr = [...matrix]
+        
+        let current = testQ.dequeue()
+        
+        for (let x = 0; x < 4; x++) {
+           // await new Promise(resolve => setTimeout(resolve, 1));
+            let neighborX = current.xValue + rowdir[x]
+            let neighborY = current.yValue + coldir[x]
+            
+            if (neighborX < 0 || neighborY < 0) continue;
+            else if (neighborX >= 30 || neighborY >= 30) continue;
+            else if (newarr[neighborX][neighborY].visited === true) continue;
+            else if (newarr[neighborX][neighborY].isWall === true) continue;
+            else {
+                shortestPath.set(newarr[neighborX][neighborY], current)
+                testQ.enqueue(newarr[neighborX][neighborY])
+                newarr[neighborX][neighborY].visited = true
+                setMatrix(newarr)
+            }
+        }
+        
+        
         setTimeout(function () {
-            let newarr = [...matrix]
-
-            let current = testQ.dequeue()
-
-            for (let x = 0; x < 4; x++) {
-                let neighborX = current.xValue + rowdir[x]
-                let neighborY = current.yValue + coldir[x]
-
-                if (neighborX < 0 || neighborY < 0) continue;
-                else if (neighborX >= 30 || neighborY >= 30) continue;
-                else if (newarr[neighborX][neighborY].visited === true) continue;
-                else if (newarr[neighborX][neighborY].isWall === true) continue;
-                else {
-                    shortestPath.set(newarr[neighborX][neighborY], current)
-                    testQ.enqueue(newarr[neighborX][neighborY])
-                    newarr[neighborX][neighborY].visited = true
-                    setMatrix(newarr)
-                }
-            }
-
-           
-            console.log('this is current: ', current)
-            console.log('this is end: ', newarr[End.xValue][End.yValue])
-            console.log('this is start: ', Start)
-
-            if (current === newarr[End.xValue][End.yValue]) {
-
-                findPath(shortestPath, newarr[End.xValue][End.yValue])
-            }
-            if (current !== newarr[End.xValue][End.yValue]) {
-                myLoop()
-
+        if (current === newarr[End.xValue][End.yValue]) {
+            
+            findPath(shortestPath, newarr[End.xValue][End.yValue])
+        }
+        if (current !== newarr[End.xValue][End.yValue]) {
+                 myLoop()
+                
             }
             if (testQ.items.length === 0) {
-                console.log('Out of items')
                 findPath(shortestPath, End)
             }
-        }, 5)
+        }, 1)
     }
 
     function findPath(path: Map<CellBox, CellBox>, end: CellBox) {
@@ -106,7 +102,7 @@ const Board = () => {
             if (current !== Start) {
                 findPath(path, current)
             }
-        }, 50)
+        }, 10)
     }
 
     const setWall = (x: number, y: number) => {
@@ -114,7 +110,6 @@ const Board = () => {
         let newArr = [...matrix]
         newArr[x][y].isWall = true;
         setMatrix(newArr)
-
     }
 
     const submitHandler = (event: FormEvent) => {
@@ -153,8 +148,11 @@ const Board = () => {
             </div>
 
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+
                 {showStart ? <button className="btn btn-primary" onClick={myLoop} style={{ fontSize: '40px' }} >Start</button> : <h1>Waiting for Start and End</h1>}
+                
             </Box>
+
             {!showStart ?
                 <form onSubmit={submitHandler}>
                     <fieldset>
@@ -171,7 +169,6 @@ const Board = () => {
                                 <label className="form-label mt-4">Column</label>
                                 <input ref={startCol} className="form-control" placeholder="Enter Col" />
                             </div>
-
                         </div>
 
                         <div style={{ display: 'flex', justifyContent: 'center' }}>

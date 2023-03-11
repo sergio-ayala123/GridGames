@@ -17,17 +17,14 @@ for (let i = 0; i < 30; i++) {
 const GolBoard = () => {
 
     const [updatedMatrix, setMatrix] = useState<GolCellBox[][]>(matrix);
+
+
     const [stop, setStop] = useState(true);
 
     const setAlive = (x: number, y: number) => {
-        // console.log('isAlive before click: ', updatedMatrix[x][y].isAlive)
-
-        // matrix[x][y].isAlive = true
         let newArr = [...matrix]
         newArr[x][y].isAlive = !newArr[x][y].isAlive;
         setMatrix(newArr);
-        //setMatrix(matrix)  
-        // console.log('isAlive after click: ', updatedMatrix[x][y].isAlive)
 
     }
 
@@ -65,7 +62,6 @@ const GolBoard = () => {
                     }
 
                     else if (count === 3 && newarr[j][k].isAlive === false) {
-                        //newarr[j][k].isAlive = true;
                         aliveCells = [[j, k], ...aliveCells]
                     }
                     count = 0
@@ -104,7 +100,7 @@ const GolBoard = () => {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-               <button className = "btn btn-primary" style = {{fontSize:'25px'}}onClick={myLoop}>Start</button>
+               <button className = "btn btn-primary" style = {{fontSize:'25px'}} onClick={myLoop}>Start</button>
             </div>
 
         </>

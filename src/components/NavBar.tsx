@@ -23,11 +23,20 @@ const NavBar = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/pathFinder">
-                                    PathFinder
+                                <Link className="nav-link" to="/BFS">
+                                    Breadth First Search
                                 </Link>
                             </li>
-
+                            {/* <li className="nav-item">
+                                <Link className="nav-link" to="/Form">
+                                    Form
+                                </Link>
+                            </li> */}
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/AStar">
+                                    A Star
+                                </Link>
+                            </li>
                         </ul>
 
                     </div>

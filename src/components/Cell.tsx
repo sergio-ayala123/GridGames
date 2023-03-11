@@ -17,6 +17,7 @@ class CellBox {
     }
     
 }
+
 const Cell: React.FC<{ row: number, col: number, isWall: boolean, isPath: boolean, visited: boolean, makeWall: (x: number, y: number) => void }> = (props) => {
 
     const cellClicked = () => {
@@ -25,8 +26,12 @@ const Cell: React.FC<{ row: number, col: number, isWall: boolean, isPath: boolea
 
     const mouseEnter = () => {
         if (localStorage.getItem('clicked') === 'true') {
+            if (props.visited == true){
 
-            props.makeWall(props.row, props.col)
+            }
+            else {
+                props.makeWall(props.row, props.col)
+            }
         }
     }
     const mouseUp = () => {
@@ -46,7 +51,7 @@ const Cell: React.FC<{ row: number, col: number, isWall: boolean, isPath: boolea
             ) :
             props.visited ? (
                 <button className={`cell ${props.visited ? 'visited' : ''}`} onMouseDown={cellClicked} onMouseOver={mouseEnter} onMouseUp={mouseUp}></button>
-            ) : <button className='btn btn-outline-light'  onMouseDown={cellClicked} onMouseOver={mouseEnter} onMouseUp={mouseUp}></button>}
+            ) : <button className = "cell" onMouseDown={cellClicked} onMouseOver={mouseEnter} onMouseUp={mouseUp}></button>}
         </>
     );
 }

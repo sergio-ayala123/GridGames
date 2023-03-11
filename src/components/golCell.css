@@ -3,3 +3,7 @@
     background-color: #ffc107;
 }
 
+.cell {
+    background-color: transparent;
+    border-color: cyan;
+}

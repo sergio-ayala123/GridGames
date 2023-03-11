@@ -9,3 +9,8 @@
 .cell.path{
     background-color: #ffc107;
 }
+
+.cell {
+    background-color: tranparent;
+    border-color: cyan;
+}
