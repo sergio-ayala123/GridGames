@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import UseInput from "../hooks/UseInput";
 import { useFormik } from "formik";

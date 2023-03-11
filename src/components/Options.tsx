@@ -10,16 +10,17 @@ const Options: React.FC<{sendValues: (rows: number, columns: number, speed: numb
     const [diagonalNeighbors, setDiagonalNeighbors] = useState<boolean>(false)
 
 
+    useEffect(() => {
 
     const passToParent= (rows: number, columns: number, speed: number, obstacles: number, diagonalNeighbors:boolean) => {
         props.sendValues(rows, columns, speed,obstacles, diagonalNeighbors)
     };
 
 
-    useEffect(() => {
+
         passToParent(rows, columns, executionSpeed, obstaclePercentage, diagonalNeighbors)
 
-    }, [obstaclePercentage, executionSpeed, rows, columns, diagonalNeighbors])
+    }, [obstaclePercentage, executionSpeed, rows, columns, diagonalNeighbors, props])
 
     return (
         <>

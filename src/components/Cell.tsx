@@ -26,7 +26,7 @@ const Cell: React.FC<{ row: number, col: number, isWall: boolean, isPath: boolea
 
     const mouseEnter = () => {
         if (localStorage.getItem('clicked') === 'true') {
-            if (props.visited == true){
+            if (props.visited === true){
 
             }
             else {

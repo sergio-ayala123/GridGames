@@ -24,15 +24,7 @@ const DraggableContainer: React.FC<{sendValues: (rows:number, columns:number, sp
     }
   };
 
-  const handleMouseMove = (event: MouseEvent) => {
-    if (!isDragging) return;
-    const x = event.clientX - initialMousePosition.x + initialContainerPosition.x;
-    const y = event.clientY - initialMousePosition.y + initialContainerPosition.y;
-    if (containerRef.current) {
-      containerRef.current.style.left = `${x}px`;
-      containerRef.current.style.top = `${y}px`;
-    }
-  };
+  
 
   const handleMouseUp = () => {
     setIsDragging(false);
@@ -40,13 +32,22 @@ const DraggableContainer: React.FC<{sendValues: (rows:number, columns:number, sp
 
   // Add event listeners to the document to allow dragging the container even when the mouse is outside of the container
   React.useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!isDragging) return;
+      const x = event.clientX - initialMousePosition.x + initialContainerPosition.x;
+      const y = event.clientY - initialMousePosition.y + initialContainerPosition.y;
+      if (containerRef.current) {
+        containerRef.current.style.left = `${x}px`;
+        containerRef.current.style.top = `${y}px`;
+      }
+    };
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging]);
+  }, [isDragging, initialMousePosition.x, initialContainerPosition.x, initialContainerPosition.y, initialMousePosition.y]);
 
   const handleValues = (rows: number, columns: number, speed: number, obstacles: number,diagonalNeighbors:boolean) => {
     props.sendValues(rows, columns, speed, obstacles,diagonalNeighbors)

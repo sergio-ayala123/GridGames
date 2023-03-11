@@ -271,7 +271,6 @@ const AStarBoard = () => {
         setExecutionSpeed(speed)
         setObstaclePercentage(obstacles)
         setDiagonalNeighbors(diagonalNeighbors)
-        console.log("this is the value of diagonal neighbors check: ", diagonalNeighbors)
     }
 
 
